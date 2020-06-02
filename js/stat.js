@@ -22,6 +22,12 @@ var getMaxElement = function (array) {
   return maxElement;
 };
 
+var renderTitle = function (ctx, TitleCoordX, FirstTitleCoordY, SecondTitleCoordY) {
+  ctx.fillStyle = '#000';
+  ctx.fillText('Ура вы победили!', TitleCoordX, FirstTitleCoordY);
+  ctx.fillText('Список результатов:', TitleCoordX, SecondTitleCoordY);
+};
+
 var renderText = function (ctx, text, coordX, coordY) {
   ctx.fillStyle = '#000';
   ctx.fillText(text, coordX, coordY);
@@ -50,21 +56,28 @@ var getBarColor = function (playerName) {
 };
 
 window.renderStatistics = function (ctx, players, times) {
-  renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, 'rgba(0, 0, 0, 0.7)');
-  renderCloud(ctx, CLOUD_X, CLOUD_Y, '#fff');
-
   var maxTime = getMaxElement(times);
+  var shadowCoordX = CLOUD_X + GAP;
+  var shadowCoordY = CLOUD_Y + GAP;
+  var TitleCoordX = CLOUD_X + GAP * 2;
+  var FirstTitleCoordY = FONT_GAP + TEXT_HEIGHT + GAP * 2;
+  var SecondTitleCoordY = FirstTitleCoordY + FONT_GAP + TEXT_HEIGHT;
 
-  ctx.fillStyle = '#000';
-  ctx.fillText('Ура вы победили!', CLOUD_X + 20, 25 + TEXT_HEIGHT);
-  ctx.fillText('Список результатов:', CLOUD_X + 20, 25 + TEXT_HEIGHT + FONT_GAP + TEXT_HEIGHT);
+  renderCloud(ctx, shadowCoordX, shadowCoordY, 'rgba(0, 0, 0, 0.7)');
+  renderCloud(ctx, CLOUD_X, CLOUD_Y, '#fff');
+  renderTitle(ctx, TitleCoordX, FirstTitleCoordY, SecondTitleCoordY);
 
   for (var i = 0; i < players.length; i++) {
     var coordX = CLOUD_X + BAR_GAP + (BAR_WIDTH + BAR_GAP) * i;
     var coordY = CLOUD_HEIGHT - GAP - FONT_GAP - TEXT_HEIGHT;
+    var currentTime = Math.floor(times[i]);
+    var currentBarColor = getBarColor(players[i]);
+    var currentBarHeight = (MAX_BAR_HEIGHT * times[i]) / maxTime;
+    var coordNameLabel = CLOUD_HEIGHT - GAP;
+    var coordValue = coordY - currentBarHeight - GAP;
 
-    renderText(ctx, players[i], coordX, CLOUD_HEIGHT - GAP);
-    renderBar(ctx, getBarColor(players[i]), coordX, coordY, BAR_WIDTH, -((MAX_BAR_HEIGHT * times[i]) / maxTime));
-    renderText(ctx, Math.floor(times[i]), coordX, coordY - ((MAX_BAR_HEIGHT * times[i]) / maxTime) - GAP);
+    renderText(ctx, players[i], coordX, coordNameLabel);
+    renderBar(ctx, currentBarColor, coordX, coordY, BAR_WIDTH, -currentBarHeight);
+    renderText(ctx, currentTime, coordX, coordValue);
   }
 };
