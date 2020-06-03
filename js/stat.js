@@ -22,10 +22,10 @@ var getMaxElement = function (array) {
   return maxElement;
 };
 
-var renderTitle = function (ctx, TitleCoordX, FirstTitleCoordY, SecondTitleCoordY) {
+var renderTitle = function (ctx, titleCoordX, firstTitleCoordY, secondTitleCoordY) {
   ctx.fillStyle = '#000';
-  ctx.fillText('Ура вы победили!', TitleCoordX, FirstTitleCoordY);
-  ctx.fillText('Список результатов:', TitleCoordX, SecondTitleCoordY);
+  ctx.fillText('Ура вы победили!', titleCoordX, firstTitleCoordY);
+  ctx.fillText('Список результатов:', titleCoordX, secondTitleCoordY);
 };
 
 var renderText = function (ctx, text, coordX, coordY) {
