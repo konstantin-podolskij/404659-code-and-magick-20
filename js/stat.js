@@ -59,13 +59,13 @@ window.renderStatistics = function (ctx, players, times) {
   var maxTime = getMaxElement(times);
   var shadowCoordX = CLOUD_X + GAP;
   var shadowCoordY = CLOUD_Y + GAP;
-  var TitleCoordX = CLOUD_X + GAP * 2;
-  var FirstTitleCoordY = FONT_GAP + TEXT_HEIGHT + GAP * 2;
-  var SecondTitleCoordY = FirstTitleCoordY + FONT_GAP + TEXT_HEIGHT;
+  var titleCoordX = CLOUD_X + GAP * 2;
+  var firstTitleCoordY = FONT_GAP + TEXT_HEIGHT + GAP * 2;
+  var secondTitleCoordY = FirstTitleCoordY + FONT_GAP + TEXT_HEIGHT;
 
   renderCloud(ctx, shadowCoordX, shadowCoordY, 'rgba(0, 0, 0, 0.7)');
   renderCloud(ctx, CLOUD_X, CLOUD_Y, '#fff');
-  renderTitle(ctx, TitleCoordX, FirstTitleCoordY, SecondTitleCoordY);
+  renderTitle(ctx, titleCoordX, firstTitleCoordY, secondTitleCoordY);
 
   for (var i = 0; i < players.length; i++) {
     var coordX = CLOUD_X + BAR_GAP + (BAR_WIDTH + BAR_GAP) * i;
