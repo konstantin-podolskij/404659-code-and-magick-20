@@ -61,7 +61,7 @@ window.renderStatistics = function (ctx, players, times) {
   var shadowCoordY = CLOUD_Y + GAP;
   var titleCoordX = CLOUD_X + GAP * 2;
   var firstTitleCoordY = FONT_GAP + TEXT_HEIGHT + GAP * 2;
-  var secondTitleCoordY = FirstTitleCoordY + FONT_GAP + TEXT_HEIGHT;
+  var secondTitleCoordY = firstTitleCoordY + FONT_GAP + TEXT_HEIGHT;
 
   renderCloud(ctx, shadowCoordX, shadowCoordY, 'rgba(0, 0, 0, 0.7)');
   renderCloud(ctx, CLOUD_X, CLOUD_Y, '#fff');
